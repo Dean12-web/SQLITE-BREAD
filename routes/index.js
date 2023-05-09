@@ -10,10 +10,10 @@ let db = new sqlite3.Database('database.db', err =>{
   console.log("Database Connected");
 })
 
-const sql = "SELECT * FROM data";
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  const sql = "SELECT * FROM data";
   db.all(sql, [], (err, rows) =>{
     if(err){
       console.error(err);
@@ -22,5 +22,22 @@ router.get('/', function(req, res, next) {
     }
   })
 });
+router.get('/add', function(req, res, next){
+  res.render('add', {title: "Add data"})
+})
 
+router.post('/add', (req,res, next)=>{
+  const sql = "INSERT INTO data(dataStr,dataInt,dataFloat,tanggal,dataBol) VALUES(?,?,?,?,?)"
+  db.run(sql, [req.body.string,req.body.integer,req.body.float,req.body.date,req.body.boolean],function (err){
+    if(err){
+      console.error(err.message);
+    }
+    else{
+      res.redirect('/');
+    }
+  })
+})
+router.get('/edit', function(req,res, next){
+  res.render('edit', {title:"Edit Data"})
+})
 module.exports = router;
