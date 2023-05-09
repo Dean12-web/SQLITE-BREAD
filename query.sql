@@ -8,4 +8,4 @@ CREATE TABLE data (
 );
 
 INSERT INTO data(id,dataStr,dataInt,dataFloat,tanggal,dataBol) 
-VALUES(1,"Testing Data",12,1.45,"07-07-2017",'True');
+VALUES(1,"Testing Data",12,1.45,"07-07-2017","True");

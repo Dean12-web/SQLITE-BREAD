@@ -1,11 +1,110 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <h1>Bread (Browse, Read, Edit, Add, Delete)</h1>
+  <h3>Filters</h3>
+  <div class="container">
+    <div class="row">
+      <div class="col-25">
+        <label for="id">ID</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="id" name="id" placeholder="ID">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="string">String</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="string" name="string" placeholder="String">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="integer">Integer</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="integer" name="integer" placeholder="Integer">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="float">Float</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="float" name="float" placeholder="Float">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="date">Date</label>
+      </div>
+      <div class="col-75">
+        <input type="date" id="date" name="StartDate" placeholder="Start Date">
+        <br>
+        to
+        <br>
+        <input type="date" id="date" name="EndDate" placeholder="End Date">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="boolean">Boolean</label>
+      </div>
+      <div class="col-75">
+        <select name="boolean" id="boolean">
+          <option>Choose the boolean...</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <input type="submit" value="Search" placeholder="Search">
+    </div>
+  </div>
+  <table id="table">
+    <tr>
+      <th>ID</th>
+      <th>String</th>
+      <th>Integer</th>
+      <th>Float</th>
+      <th>Date</th>
+      <th>Boolean</th>
+      <th>Actions</th>
+    </tr>
+    <% rows.forEach((item)=> { %>
+      <tr>
+        <td><%= item.id %></td>
+        <td><%= item.dataStr %></td>
+        <td><%= item.dataInt %></td>
+        <td><%= item.dataFloat %></td>
+        <td><%= item.tanggal %></td>
+        <td><%= item.dataBol %></td>
+        <td>
+          <a href="" class="button button-succes">Edit</a>&nbsp;
+          <a href="" class="button button-danger">Delete</a>
+        </td>
+      </tr>
+      <% }); %>
+  </table>
+  <br>
+  <div class="pagination">
+    <a href="">Previous</a>
+    <a href="" class="active">1</a>
+    <a href="">2</a>
+    <a href="">3</a>
+    <a href="">Next</a>
+  </div>
+  <br>
+  <a href="" class="button button-primary">Add</a>
+</body>
+
 </html>
