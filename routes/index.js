@@ -13,23 +13,24 @@ let db = new sqlite3.Database('database.db', err =>{
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-
-    const sqlCount = `SELECT count(*) as total FROM data`
+  // Pagination
+  const sqlCount = `SELECT count(*) as total FROM data`
+  db.all(sqlCount,[],(err, row)=>{
     const rows = row[0].total
-    console.log(rows)
     const page = req.query.page || 1;
     const limit = 3 ;
     const offset = (page - 1) * limit;
     const pages = Math.ceil(rows / limit)
+    console.log(row[0].total)
     const sql = `SELECT * FROM data LIMIT ${limit} OFFSET ${offset}`;
     db.all(sql, [], (err, rows) =>{
       if(err){
         console.error(err);
       }else{
-        res.render('index', { title: 'SQLITE-Bread', rows, pages });
+        res.render('index', { title: 'SQLITE-Bread', rows, pages, page });
       }
     })
-  
+  })
 });
 router.get('/add', function(req, res, next){
   res.render('add', {title: "Add data"})

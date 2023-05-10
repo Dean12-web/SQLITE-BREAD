@@ -11,65 +11,73 @@
 <body>
   <h1>Bread (Browse, Read, Edit, Add, Delete)</h1>
   <h3>Filters</h3>
-  <div class="container">
-    <div class="row">
-      <div class="col-25">
-        <label for="id">ID</label>
+  <form action="" method="get">
+    <div class="container">
+      <div class="row">
+        <div class="col-25">
+          <input type="checkbox" name="check_ID" id="check_ID">
+          <label for="id">ID</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="id" name="id" placeholder="ID">
+        </div>
       </div>
-      <div class="col-75">
-        <input type="text" id="id" name="id" placeholder="ID">
+      <div class="row">
+        <div class="col-25">
+          <input type="checkbox" name="check_Str" id="check_Str">
+          <label for="string">String</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="string" name="string" placeholder="String">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <input type="checkbox" name="check_Int" id="check_Int">
+          <label for="integer">Integer</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="integer" name="integer" placeholder="Integer">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <input type="checkbox" name="check_Float" id="check_Float">
+          <label for="float">Float</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="float" name="float" placeholder="Float">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <input type="checkbox" name="check_Date" id="check_Date">
+          <label for="date">Date</label>
+        </div>
+        <div class="col-75">
+          <input type="date" id="date" name="StartDate" placeholder="Start Date">
+          <br>
+          to
+          <br>
+          <input type="date" id="date" name="EndDate" placeholder="End Date">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <input type="checkbox" name="check_Bol" id="check_Bol">
+          <label for="boolean">Boolean</label>
+        </div>
+        <div class="col-75">
+          <select name="boolean" id="boolean">
+            <option>Choose the boolean...</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <button type="submit" value="Search">Search</button> 
       </div>
     </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="string">String</label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="string" name="string" placeholder="String">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="integer">Integer</label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="integer" name="integer" placeholder="Integer">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="float">Float</label>
-      </div>
-      <div class="col-75">
-        <input type="text" id="float" name="float" placeholder="Float">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="date">Date</label>
-      </div>
-      <div class="col-75">
-        <input type="date" id="date" name="StartDate" placeholder="Start Date">
-        <br>
-        to
-        <br>
-        <input type="date" id="date" name="EndDate" placeholder="End Date">
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-25">
-        <label for="boolean">Boolean</label>
-      </div>
-      <div class="col-75">
-        <select name="boolean" id="boolean">
-          <option>Choose the boolean...</option>
-        </select>
-      </div>
-    </div>
-    <div class="row">
-      <button type="submit" value="Search">Search</button> 
-    </div>
-  </div>
+  </form>
   <table id="table">
     <tr>
       <th>ID</th>
@@ -97,11 +105,11 @@
   </table>
   <br>
   <div class="pagination">
-    <a href="">Previous</a>
-    <% for( let i = 1; i < 3; i++ ) { %>
+    <a href="/?page=<%=parseInt(page) - 1%>">Previous</a>
+    <% for( let i = 1; i <= pages; i++ ) { %>
       <a href="/?page=<%=i %>" ><%=i %></a>
     <% } %>
-    <a href="">Next</a>
+    <a href="/?page=<%=parseInt(page) + 1%>">Next</a>
   </div>
   <br>
   <a href="/add" class="button button-primary">Add</a>
