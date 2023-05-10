@@ -15,7 +15,7 @@
                     <label for="id">ID</label>
                 </div>
                 <div class="col-75">
-                    <input type="text" id="id" name="id" placeholder="ID">
+                    <input type="text" id="id" name="id" placeholder="ID"  value="<%= rows.id %>">
                 </div>
             </div>
             <div class="row">
@@ -23,7 +23,7 @@
                     <label for="string">String</label>
                 </div>
                 <div class="col-75">
-                    <input type="text" id="string" name="string" placeholder="String">
+                    <input type="text" id="string" name="string" placeholder="String" value="<%= rows.dataStr %>">
                 </div>
             </div>
             <div class="row">
@@ -31,7 +31,7 @@
                     <label for="integer">Integer</label>
                 </div>
                 <div class="col-75">
-                    <input type="text" id="integer" name="integer" placeholder="Integer">  
+                    <input type="text" id="integer" name="integer" placeholder="Integer" value="<%= rows.dataInt %>">  
                 </div>
             </div>
             <div class="row">
@@ -39,7 +39,7 @@
                     <label for="float">Float</label>
                 </div>
                 <div class="col-75">
-                    <input type="text" id="float" name="float" placeholder="Float">
+                    <input type="text" id="float" name="float" placeholder="Float" value="<%= rows.dataFloat %>">
                 </div>
             </div>
             <div class="row">
@@ -47,7 +47,7 @@
                     <label for="date">Date</label>
                 </div>
                 <div class="col-75">
-                    <input type="date" id="date" name="date" placeholder="Date">
+                    <input type="date" id="date" name="date" placeholder="Date" value="<%= rows.tanggal %>">
                 </div>
             </div>
             <div class="row">
@@ -57,13 +57,13 @@
                 <div class="col-75">
                     <select name="boolean" id="boolean">
                         <option>Choose the boolean...</option>
-                        <option value="true">True</option>
-                        <option value="true">False</option>
+                        <option value="true" <%= rows.dataBol=="true" ? 'selected' : '' %>>true</option>
+                        <option value="false" <%= rows.dataBol=="false" ? 'selected' : '' %>>false</option>
                     </select>
                 </div>
             </div>
             <div class="row">
-                <input type="submit" value="save" placeholder="Save">
+                <button type="submit" value="save">Save</button>
                 <a href="/" class="button button-succes">Back</a>
             </div>
         </form>
