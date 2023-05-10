@@ -70,6 +70,8 @@
         <div class="col-75">
           <select name="boolean" id="boolean">
             <option>Choose the boolean...</option>
+            <option value="true">true</option>
+            <option value="false">false</option>
           </select>
         </div>
       </div>
@@ -105,11 +107,16 @@
   </table>
   <br>
   <div class="pagination">
+    <!-- HANDLING adalah kondisi untuk mengatasi bug -->
+    <% if (page > 1) { %>
     <a href="/?page=<%=parseInt(page) - 1%>">Previous</a>
-    <% for( let i = 1; i <= pages; i++ ) { %>
-      <a href="/?page=<%=i %>" ><%=i %></a>
     <% } %>
-    <a href="/?page=<%=parseInt(page) + 1%>">Next</a>
+    <% for( let i = 1; i <= pages; i++ ) { %>
+      <a href="/?page=<%=i %>" class="<%= page == i ? 'active' : '' %>" ><%=i %></a>
+    <% } %>
+    <% if (page < pages) { %>
+      <a href="/?page=<%=parseInt(page) + 1%>">Next</a>
+    <% } %>
   </div>
   <br>
   <a href="/add" class="button button-primary">Add</a>
