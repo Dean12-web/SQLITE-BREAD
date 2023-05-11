@@ -15,6 +15,8 @@ let db = new sqlite3.Database('database.db', err => {
 router.get('/', function (req, res, next) {
   // Filters or Searching
   const params = []
+
+  const filterData = {}
   // Filter ID
   if (req.query.check_ID && req.query.id) {
     params.push(`id LIKE '${req.query.id}'`)
@@ -51,7 +53,9 @@ router.get('/', function (req, res, next) {
     const page = req.query.page || 1;
     const limit = 3;
     const offset = (page - 1) * limit;
-    const pages = Math.ceil(rows / limit)
+    const pages = Math.ceil(rows / limit);
+    // console.log(req.url)
+    const url = req.url == '/' ? '/?page=1' : req.url // membuat limit pagination
     let sql = `SELECT * FROM data`;
     if (params.length > 0) {
       sql += ` WHERE ${params.join(' AND  ')}`
@@ -61,7 +65,7 @@ router.get('/', function (req, res, next) {
       if (err) {
         console.error(err);
       } else {
-        res.render('index', { title: 'SQLITE-Bread', rows, pages, page });
+        res.render('index', { title: 'SQLITE-Bread', rows, pages, page, url, query : req.query});
       }
     })
   })
@@ -72,7 +76,7 @@ router.get('/add', function (req, res, next) {
 
 router.post('/add', (req, res, next) => {
   const sql = "INSERT INTO data(dataStr,dataInt,dataFloat,tanggal,dataBol) VALUES(?,?,?,?,?)"
-  db.run(sql, [req.body.string, req.body.integer, req.body.float, indonesianMonthString(req.body.date), req.body.boolean], (err) => {
+  db.run(sql, [req.body.string, req.body.integer, req.body.float, req.body.date, req.body.boolean], (err) => {
     if (err) {
       console.error(err.message);
     }

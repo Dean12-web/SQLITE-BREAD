@@ -12,71 +12,73 @@
   <h1>Bread (Browse, Read, Edit, Add, Delete)</h1>
   <h3>Filters</h3>
   <form action="" method="get">
+    <input type="hidden" name="page" value="1">
     <div class="container">
       <div class="row">
         <div class="col-25">
-          <input type="checkbox" name="check_ID" id="check_ID">
+          <input type="checkbox" name="check_ID" id="check_ID" <%= query.id ? "checked" : "" %>>
           <label for="id">ID</label>
         </div>
         <div class="col-75">
-          <input type="text" id="id" name="id" placeholder="ID">
+          <input type="text" id="id" name="id" placeholder="ID" value="<%= query.id %>">
         </div>
       </div>
       <div class="row">
         <div class="col-25">
-          <input type="checkbox" name="check_Str" id="check_Str">
+          <input type="checkbox" name="check_Str" id="check_Str" <%= query.check_Str ? "checked" : "" %> >
           <label for="string">String</label>
         </div>
         <div class="col-75">
-          <input type="text" id="string" name="string" placeholder="String">
+          <input type="text" id="string" name="string" placeholder="String" value="<%= query.string %>">
         </div>
       </div>
       <div class="row">
         <div class="col-25">
-          <input type="checkbox" name="check_Int" id="check_Int">
+          <input type="checkbox" name="check_Int" id="check_Int" <%= query.check_Int ? "checked" : "" %>>
           <label for="integer">Integer</label>
         </div>
         <div class="col-75">
-          <input type="text" id="integer" name="integer" placeholder="Integer">
+          <input type="text" id="integer" name="integer" placeholder="Integer" value="<%= query.integer %>">
         </div>
       </div>
       <div class="row">
         <div class="col-25">
-          <input type="checkbox" name="check_Float" id="check_Float">
+          <input type="checkbox" name="check_Float" id="check_Float" <%= query.check_Float ? "checked" : "" %>>
           <label for="float">Float</label>
         </div>
         <div class="col-75">
-          <input type="text" id="float" name="float" placeholder="Float">
+          <input type="text" id="float" name="float" placeholder="Float" value="<%= query.float %>">
         </div>
       </div>
       <div class="row">
         <div class="col-25">
-          <input type="checkbox" name="check_Date" id="check_Date">
+          <input type="checkbox" name="check_Date" id="check_Date" <%= query.check_Date ? "checked" : "" %>>
           <label for="date">Date</label>
         </div>
         <div class="col-75">
-          <input type="date" id="date" name="StartDate" placeholder="Start Date">
+          <input type="date" id="date" name="StartDate" placeholder="Start Date" value="<%= query.StartDate %>">
           <br>
           to
           <br>
-          <input type="date" id="date" name="EndDate" placeholder="End Date">
+          <input type="date" id="date" name="EndDate" placeholder="End Date" value="<%= query.StartDate %>">
         </div>
       </div>
       <div class="row">
         <div class="col-25">
-          <input type="checkbox" name="check_Bol" id="check_Bol">
+          <input type="checkbox" name="check_Bol" id="check_Bol" <%= query.check_Bol ? "checked" : "" %>>
           <label for="boolean">Boolean</label>
         </div>
         <div class="col-75">
           <select name="boolean" id="boolean">
             <option>Choose the boolean...</option>
-            <option value="true">true</option>
-            <option value="false">false</option>
+            <option value="true" <%= query.boolean=="true" ? "selected" : "" %>>true</option>
+            <option value="false" <%= query.boolean=="false" ? "selected" : "" %>>false</option>
           </select>
         </div>
       </div>
       <div class="row">
         <button type="submit" value="Search">Search</button> 
+        <a href="/">Back</a> </button> 
       </div>
     </div>
   </form>
@@ -112,7 +114,7 @@
     <a href="/?page=<%=parseInt(page) - 1%>">Previous</a>
     <% } %>
     <% for( let i = 1; i <= pages; i++ ) { %>
-      <a href="/?page=<%=i %>" class="<%= page == i ? 'active' : '' %>" ><%=i %></a>
+      <a href="<%= url.replace(`page=${page}`, `page=${i}`) %>" class="<%= page == i ? 'active' : '' %>" ><%=i %></a>
     <% } %>
     <% if (page < pages) { %>
       <a href="/?page=<%=parseInt(page) + 1%>">Next</a>
