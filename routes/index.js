@@ -19,19 +19,19 @@ router.get('/', function (req, res, next) {
   const filterData = {}
   // Filter ID
   if (req.query.check_ID && req.query.id) {
-    params.push(`id LIKE '${req.query.id}'`)
+    params.push(`id = '${req.query.id}'`)
   }
   // Filter string
   if (req.query.check_Str && req.query.string) {
-    params.push(`dataStr LIKE '${req.query.string}'`)
+    params.push(`dataStr LIKE '%${req.query.string}%'`)
   }
   // Filter integer
   if (req.query.check_Int && req.query.integer) {
-    params.push(`dataInt LIKE '${req.query.integer}'`)
+    params.push(`dataInt = '${req.query.integer}'`)
   }
   // Filter float
   if (req.query.check_Float && req.query.float) {
-    params.push(`dataFloat LIKE '${req.query.float}'`)
+    params.push(`dataFloat = '${req.query.float}'`)
   }
   // Filter date
   if (req.query.check_Date && req.query.StartDate && req.query.EndDate) {
@@ -40,7 +40,7 @@ router.get('/', function (req, res, next) {
 
   // Filter boolean
   if (req.query.check_Bol && req.query.boolean) {
-    params.push(`dataBol LIKE '${req.query.boolean}'`)
+    params.push(`dataBol = '${req.query.boolean}'`)
   }  
 
   // Pagination
